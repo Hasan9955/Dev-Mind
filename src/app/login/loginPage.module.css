@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.wrapper {
+  background-color: var(--softBg);
+  padding: 50px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  border-radius: 10px;
+}
+
+.logo{
+  font-size: 25px;
+  margin-left: 8px;
+}
+
+.socialButton {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginText { 
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.socialButton:nth-child(2) {
+  background-color: #3d3d3d; 
+}
+
+.socialButton:nth-child(3) {
+  background-color: #111;
+}
+
+.socialButton:nth-child(4) {
+  background-color: #087bea;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    padding: 50px 100px;
+  }
+
+  .logo{
+    font-size: 25px; 
+  }
+
+  .loginText { 
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+  }
+
+
+}
+@media screen and (max-width: 640px) {
+  .wrapper {
+    padding: 20px;
+  }
+
+  .logo{
+    font-size: 25px;
+    margin-left: 4px;
+  }
+
+  .loginText { 
+    text-align: center;
+    font-size: 25px;
+    font-weight: 400;
+  }
+
+  .socialButton{
+    padding: 10px;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
