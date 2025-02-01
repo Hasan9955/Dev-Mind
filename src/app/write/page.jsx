@@ -13,7 +13,12 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
+
+// Dynamically import ReactQuill with SSR disabled
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
 import { toast } from "sonner";
 
 const WritePage = () => {
@@ -79,6 +84,15 @@ const WritePage = () => {
       .replace(/^-+|-+$/g, "");
 
   const handleSubmit = async () => {
+
+    if(!title){
+      return toast.error("Title is required!");
+    }
+
+    if(!value){
+      return toast.error("Content is required!");
+    }
+
     const res = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({
@@ -86,14 +100,14 @@ const WritePage = () => {
         desc: value,
         img: media,
         slug: slugify(title),
-        catSlug: catSlug || "style", //If not selected, choose the general category
+        catSlug: catSlug || "coding", //If not selected, choose the general category
       }),
     });
 
     if (res.status === 200) {
       const data = await res.json();
       toast.success("Post published successfully!");
-      router.push(`/posts/${data.slug}`);
+      router.push(`/posts/${data.slug}`); 
     }
   };
 
@@ -103,6 +117,7 @@ const WritePage = () => {
         type="text"
         placeholder="Title"
         className={styles.input}
+        required
         onChange={(e) => setTitle(e.target.value)}
       />
       <select className={styles.select} onChange={(e) => setCatSlug(e.target.value)}>
@@ -143,6 +158,7 @@ const WritePage = () => {
           theme="bubble"
           value={value}
           onChange={setValue}
+          required
           placeholder="Tell your story..."
         />
       </div>

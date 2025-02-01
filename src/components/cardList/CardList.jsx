@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./cardList.module.css";
-import Pagination from "../pagination/Pagination";
-import Image from "next/image";
+import Pagination from "../pagination/Pagination"; 
 import Card from "../card/Card";
 
 const getData = async (page, cat) => {
   const res = await fetch(
-    `http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
+    `https://dev-mind-seven.vercel.app/api/posts?page=${page}&cat=${cat || ""}`,
     {
       cache: "no-store",
     }
@@ -22,7 +21,7 @@ const getData = async (page, cat) => {
 const CardList = async ({ page, cat }) => {
   const { posts, count } = await getData(page, cat);
 
-  const POST_PER_PAGE = 2;
+  const POST_PER_PAGE = 10;
 
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;

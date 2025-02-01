@@ -18,14 +18,14 @@ const LoginPage = () => {
   if (status === "authenticated") {
     router.push("/")
   }
-  
+
   return (
-    <div className={styles.container}> 
+    <div className={styles.container}>
       <div className={styles.wrapper}>
-      <p className={styles.loginText}>Login Now!</p>
-      <div className={styles.socialButton} onClick={() => signIn("google", {
-                  callbackUrl: "http://localhost:3000",
-                })}>
+        <p className={styles.loginText}>Login Now!</p>
+        <div className={styles.socialButton} onClick={() => signIn("google", {
+          callbackUrl: "https://dev-mind-seven.vercel.app",
+        })}>
           Sign in with Google <FcGoogle className={styles.logo} />
         </div>
         <div onClick={() => toast.error("This feature is not available at this moment!")} className={styles.socialButton}>Sign in with Github <FaGithub className={styles.logo} /></div>
